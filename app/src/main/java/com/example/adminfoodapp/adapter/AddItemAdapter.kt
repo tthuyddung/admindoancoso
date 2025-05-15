@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.adminfoodapp.databinding.ItemItemBinding
 import com.example.adminfoodapp.model.FoodItem
+import com.example.adminfoodapp.utils.Constants
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -81,7 +82,7 @@ class AddItemAdapter(
                 .build()
 
             val request = Request.Builder()
-                .url("http://192.168.1.18/get_food/delete_item.php")
+                .url("${Constants.BASE_URL}delete_item.php")
                 .post(requestBody)
                 .build()
 

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.adminfoodapp.OutForDeliveryActivity
 import com.example.adminfoodapp.databinding.PendingOrderItemBinding
 import com.example.adminfoodapp.model.Order
+import com.example.adminfoodapp.utils.Constants
 
 class AcceptedOrderAdapter(
     private val orders: List<Order>,
@@ -46,7 +47,7 @@ class AcceptedOrderAdapter(
         }
 
         private fun updateOrderState(orderId: Int, newState: String) {
-            val url = "http://192.168.1.18/get_food/update_order_state.php"
+            val url = "${Constants.BASE_URL}update_order_state.php"
 
             val requestQueue = Volley.newRequestQueue(context)
             val postRequest = object : StringRequest(

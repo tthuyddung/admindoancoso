@@ -14,6 +14,7 @@ import com.example.adminfoodapp.OutForDeliveryActivity
 import com.example.adminfoodapp.PendingOrderActivity
 import com.example.adminfoodapp.databinding.PendingOrderItemBinding
 import com.example.adminfoodapp.model.Order
+import com.example.adminfoodapp.utils.Constants
 
 class PendingOrderAdapter(
     private val orders: ArrayList<Order>,
@@ -53,7 +54,7 @@ class PendingOrderAdapter(
         }
 
         private fun updateOrderState(orderId: Int, newState: String, onSuccess: () -> Unit) {
-            val url = "http://192.168.1.18/get_food/update_order_state.php"
+            val url = "${Constants.BASE_URL}update_order_state.php"
             val request = object : StringRequest(Method.POST, url,
                 { response -> onSuccess() },
                 { error -> Toast.makeText(context, "Lỗi cập nhật trạng thái", Toast.LENGTH_SHORT).show() }) {

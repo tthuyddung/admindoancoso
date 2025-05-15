@@ -10,6 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.adapter.PendingOrderAdapter
 import com.example.adminfoodapp.databinding.ActivityPendingOrderBinding
 import com.example.adminfoodapp.model.Order
+import com.example.adminfoodapp.utils.Constants
 
 class PendingOrderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPendingOrderBinding
@@ -34,7 +35,7 @@ class PendingOrderActivity : AppCompatActivity() {
 
     private fun fetchPendingOrders() {
         val state = "pending"
-        val url = "http://192.168.1.18/get_food/get_orders_state_admin.php?state=$state"
+        val url = "${Constants.BASE_URL}get_orders_state_admin.php?state=$state"
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
@@ -45,7 +46,7 @@ class PendingOrderActivity : AppCompatActivity() {
                         id = obj.getInt("id"),
                         foodName = obj.getString("food_name"),
                         count = obj.getString("count"),
-                        imageUrl = "http://192.168.1.18/get_food/" + obj.getString("image_path"), // ✅ Sửa chỗ này
+                        imageUrl = "${Constants.BASE_URL}${obj.getString("image_path")}",
                         state = obj.getString("state")
                     )
 

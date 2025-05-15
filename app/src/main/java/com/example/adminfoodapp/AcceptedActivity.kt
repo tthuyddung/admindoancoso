@@ -9,6 +9,7 @@ import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.adapter.AcceptedOrderAdapter
 import com.example.adminfoodapp.databinding.ActivityAcceptedBinding
 import com.example.adminfoodapp.model.Order
+import com.example.adminfoodapp.utils.Constants
 import org.json.JSONException
 
 class AcceptedActivity : AppCompatActivity() {
@@ -33,7 +34,7 @@ class AcceptedActivity : AppCompatActivity() {
     }
 
     private fun fetchAcceptedOrders() {
-        val url = "http://192.168.1.18/get_food/get_orders_state_admin.php?state=accepted"
+        val url = "${Constants.BASE_URL}get_orders_state_admin.php?state=accepted"
         val queue = Volley.newRequestQueue(this)
 
         val request = JsonArrayRequest(url,
@@ -45,8 +46,8 @@ class AcceptedActivity : AppCompatActivity() {
                         val order = Order(
                             id = obj.getInt("id"),
                             foodName = obj.getString("food_name"),
-                            imageUrl = "http://192.168.1.18/get_food/" + obj.getString("image_path"),
-                            count = obj.getString("count"),
+                            imageUrl = Constants.BASE_URL + obj.getString("image_path"),
+                                    count = obj.getString("count"),
                             state = obj.getString("state")
                         )
                         acceptedOrders.add(order)

@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.adapter.UserAdapter
 import com.example.adminfoodapp.databinding.ActivityAdminUserBinding
 import com.example.adminfoodapp.model.User
+import com.example.adminfoodapp.utils.Constants
 import org.json.JSONObject
 
 class AdminUserActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class AdminUserActivity : AppCompatActivity() {
     }
 
     private fun getUsers() {
-        val url = "http://192.168.1.18/get_food/get_all_users.php"
+        val url = "${Constants.BASE_URL}get_all_users.php"
         val requestQueue = Volley.newRequestQueue(this)
 
         val request = JsonObjectRequest(Request.Method.GET, url, null,

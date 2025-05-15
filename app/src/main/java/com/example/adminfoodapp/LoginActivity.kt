@@ -9,11 +9,12 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.databinding.ActivityLoginBinding
+import com.example.adminfoodapp.utils.Constants
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
-    val url = "http://192.168.1.18/get_food/admin_login.php"
+    val url = "${Constants.BASE_URL}admin_login.php"
 
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)

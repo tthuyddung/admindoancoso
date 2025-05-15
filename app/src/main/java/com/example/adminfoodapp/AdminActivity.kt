@@ -10,6 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.adapter.AdminAdapter
 import com.example.adminfoodapp.databinding.ActivityAdminBinding
 import com.example.adminfoodapp.model.Admin
+import com.example.adminfoodapp.utils.Constants
 
 class AdminActivity : AppCompatActivity() {
 
@@ -32,7 +33,7 @@ class AdminActivity : AppCompatActivity() {
     }
 
     private fun fetchAdmins() {
-        val url = "http://192.168.1.18/get_food/get_admins.php"
+        val url = "${Constants.BASE_URL}get_admins.php"
         val queue = Volley.newRequestQueue(this)
 
         val request = JsonObjectRequest(Request.Method.GET, url, null,

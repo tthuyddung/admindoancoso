@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.R
 import com.example.adminfoodapp.databinding.ActivityEditUserBinding
+import com.example.adminfoodapp.utils.Constants
 import org.json.JSONObject
 
 class EditUserActivity : AppCompatActivity() {
@@ -56,7 +57,7 @@ class EditUserActivity : AppCompatActivity() {
             return
         }
 
-        val url = "http://192.168.1.18/get_food/update_user.php"
+        val url = "${Constants.BASE_URL}update_user.php"
         val requestQueue = Volley.newRequestQueue(this)
 
         val jsonObject = JSONObject()

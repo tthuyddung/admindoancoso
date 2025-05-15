@@ -13,6 +13,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.File
 import android.util.Log
+import com.example.adminfoodapp.utils.Constants
 import java.io.IOException
 
 class AddItemActivity : AppCompatActivity() {
@@ -107,9 +108,9 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         val url = if (mode == "edit") {
-            "http://192.168.1.18/get_food/update_item.php"
+            "${Constants.BASE_URL}update_item.php"
         } else {
-            "http://192.168.1.18/get_food/add_item.php"
+            "${Constants.BASE_URL}add_item.php"
         }
 
         val client = OkHttpClient()

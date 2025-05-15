@@ -10,6 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.adapter.DeliveryAdapter
 import com.example.adminfoodapp.databinding.ActivityOutForDeliveryBinding
 import com.example.adminfoodapp.model.Order
+import com.example.adminfoodapp.utils.Constants
 import org.json.JSONArray
 
 class OutForDeliveryActivity : AppCompatActivity() {
@@ -29,7 +30,7 @@ class OutForDeliveryActivity : AppCompatActivity() {
     }
 
     private fun getDeliveringOrders() {
-        val url = "http://192.168.1.18/get_food/get_delivered_orders.php"
+        val url = "${Constants.BASE_URL}get_delivered_orders.php"
         val requestQueue = Volley.newRequestQueue(this)
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,

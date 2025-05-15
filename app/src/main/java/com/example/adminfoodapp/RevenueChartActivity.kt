@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.databinding.ActivityRevenueChartBinding
+import com.example.adminfoodapp.utils.Constants
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
@@ -28,7 +29,7 @@ class RevenueChartActivity : AppCompatActivity() {
     }
 
     private fun loadRevenueChart() {
-        val url = "http://192.168.1.18/get_food/get_food_revenue_chart.php"
+        val url = "${Constants.BASE_URL}get_food_revenue_chart.php"
         val requestQueue = Volley.newRequestQueue(this)
 
         val stringRequest = StringRequest(url, { response ->

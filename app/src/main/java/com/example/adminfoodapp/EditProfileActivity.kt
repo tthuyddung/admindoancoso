@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.adminfoodapp.databinding.ActivityEditProfileBinding
+import com.example.adminfoodapp.utils.Constants
 import org.json.JSONObject
 
 class EditProfileActivity : AppCompatActivity() {
@@ -14,8 +15,9 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private var id: String? = null
 
-    private val getUrl = "http://192.168.1.18/get_food/get_profile.php"
-    private val updateUrl = "http://192.168.1.18/get_food/update_profile.php"
+    private val getUrl = "${Constants.BASE_URL}get_profile.php"
+    private val updateUrl = "${Constants.BASE_URL}update_profile.php"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

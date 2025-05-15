@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adminfoodapp.adapter.AddItemAdapter
 import com.example.adminfoodapp.databinding.ActivityAllItemBinding
 import com.example.adminfoodapp.model.FoodItem
+import com.example.adminfoodapp.utils.Constants
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -28,7 +29,7 @@ class AllItemActivity : AppCompatActivity() {
     private fun fetchItemsFromServer() {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2/get_food/get_all_items.php")
+            .url("${Constants.BASE_URL}get_all_items.php")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -116,6 +117,6 @@ class AllItemActivity : AppCompatActivity() {
 
 
     companion object {
-        const val BASE_URL = "http://192.168.1.18/get_food/"
+        const val BASE_URL = Constants.BASE_URL
     }
 }
