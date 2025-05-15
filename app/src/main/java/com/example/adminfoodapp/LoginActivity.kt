@@ -42,10 +42,16 @@ class LoginActivity : AppCompatActivity() {
 
                         if (status == "success") {
                             val id = jsonObject.getInt("id")
+
+                            // Lưu id vào SharedPreferences
+                            val sharedPref = getSharedPreferences("AdminSession", MODE_PRIVATE)
+                            val editor = sharedPref.edit()
+                            editor.putInt("admin_id", id)
+                            editor.apply()
+
                             Toast.makeText(this, "Đăng nhập thành công! ID: $id", Toast.LENGTH_SHORT).show()
 
                             val intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra("admin_id", id)
                             startActivity(intent)
                             finish()
                         } else {
@@ -72,10 +78,5 @@ class LoginActivity : AppCompatActivity() {
             val queue = Volley.newRequestQueue(this)
             queue.add(stringRequest)
         }
-        binding.donthaveButton.setOnClickListener {
-            val intent = Intent(this, SignActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }

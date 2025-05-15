@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/comicrelief_bold"
         android:text="Tất cả"
-        android:textColor="@color/black"
+        android:textColor="#336600"
         android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backButton"

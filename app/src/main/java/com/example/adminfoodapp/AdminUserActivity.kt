@@ -41,7 +41,7 @@ class AdminUserActivity : AppCompatActivity() {
 
         binding.btnAddUser.setOnClickListener {
             val intent = Intent(this, AddUserActivity::class.java)
-            startActivityForResult(intent, ADD_USER_REQUEST_CODE) // Gọi AddUserActivity và chờ kết quả
+            startActivityForResult(intent, ADD_USER_REQUEST_CODE)
         }
 
         getUsers()
@@ -56,6 +56,8 @@ class AdminUserActivity : AppCompatActivity() {
                 val status = response.getString("status")
                 if (status == "success") {
                     val users = response.getJSONArray("users")
+
+                    userList.clear()  // <-- Đảm bảo không bị thêm trùng
                     for (i in 0 until users.length()) {
                         val userObj = users.getJSONObject(i)
                         val user = User(
@@ -65,7 +67,7 @@ class AdminUserActivity : AppCompatActivity() {
                         )
                         userList.add(user)
                     }
-                    userAdapter.notifyDataSetChanged()
+                    userAdapter.setUsers(userList)
                 } else {
                     Toast.makeText(this, "Không thể tải người dùng", Toast.LENGTH_SHORT).show()
                 }
@@ -89,7 +91,7 @@ class AdminUserActivity : AppCompatActivity() {
                 val status = response.getString("status")
                 if (status == "success") {
                     userList.remove(user)
-                    userAdapter.notifyDataSetChanged()  // Cập nhật RecyclerView sau khi xóa
+                    userAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Xóa thất bại", Toast.LENGTH_SHORT).show()
@@ -114,17 +116,14 @@ class AdminUserActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == ADD_USER_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Lấy dữ liệu người dùng mới từ Intent trả về
             val userName = data?.getStringExtra("user_name")
             val userEmail = data?.getStringExtra("user_email")
 
             if (userName != null && userEmail != null) {
-                // Thêm người dùng mới vào danh sách
-                val newUser = User(0, userName, userEmail)  // Giả sử ID tự động tăng
+                val newUser = User(0, userName, userEmail)
                 userList.add(newUser)
-                userAdapter.notifyDataSetChanged()  // Cập nhật RecyclerView
+                userAdapter.notifyDataSetChanged()
 
-                // Thông báo thành công
                 Toast.makeText(this, "Thêm người dùng: $userName, $userEmail", Toast.LENGTH_SHORT).show()
             }
         }

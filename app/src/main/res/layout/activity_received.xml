@@ -19,18 +19,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/comicrelief_bold"
+        android:text="Nhận tin nhắn"
+        android:textColor="#336600"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
 
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext"
         android:text="Name"
+        android:paddingLeft="8dp"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/received"
@@ -38,6 +54,9 @@
         android:layout_height="100dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
+        android:paddingLeft="8dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/edittext"
         app:layout_constraintEnd_toEndOf="@+id/name"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -52,16 +71,22 @@
         android:hint="Nhập câu trả lời tại đây"
         android:inputType="textMultiLine"
         android:minLines="3"
+        android:paddingLeft="8dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/edittext"
         app:layout_constraintTop_toBottomOf="@+id/received"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/charbackground"
         android:text="Gửi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/send"

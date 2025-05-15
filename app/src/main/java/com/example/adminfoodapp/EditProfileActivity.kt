@@ -12,16 +12,24 @@ import org.json.JSONObject
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
-    private val id = "1"
+    private var id: String? = null
 
     private val getUrl = "http://192.168.1.8/get_food/get_profile.php"
     private val updateUrl = "http://192.168.1.8/get_food/update_profile.php"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val sharedPref = getSharedPreferences("AdminSession", MODE_PRIVATE)
+        id = sharedPref.getInt("admin_id", -1).takeIf { it != -1 }?.toString()
+
+        if (id == null) {
+            Toast.makeText(this, "Không tìm thấy ID admin!", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
         getUserProfile()
 
@@ -50,7 +58,7 @@ class EditProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Lỗi: ${error.message}", Toast.LENGTH_SHORT).show()
             }) {
             override fun getParams(): MutableMap<String, String> {
-                return hashMapOf("id" to id)
+                return hashMapOf("id" to id!!)
             }
         }
 
@@ -79,7 +87,7 @@ class EditProfileActivity : AppCompatActivity() {
             }) {
             override fun getParams(): MutableMap<String, String> {
                 return hashMapOf(
-                    "id" to id,
+                    "id" to id!!,
                     "location" to location,
                     "owner_name" to owner,
                     "restaurant_name" to restaurant,

@@ -27,7 +27,7 @@
         android:layout_marginTop="3dp"
         android:fontFamily="@font/comicrelief_bold"
         android:text="Chờ xử lí"
-        android:textColor="@color/black"
+        android:textColor="#336600"
         android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backButton"

@@ -18,35 +18,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comicrelief_bold"
+        android:text="Sửa người dùng"
+        android:textColor="#336600"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="@id/backButton" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUsers"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_above="@id/btnAddUser"
-        android:layout_below="@+id/backButton"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddUser"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-        app:layout_constraintVertical_bias="0.708"
-        tools:layout_editor_absoluteX="35dp"
-        tools:listitem="@layout/item_user">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintBottom_toTopOf="@id/btnAddUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView12"
+        tools:listitem="@layout/item_user" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
         android:text="Thêm người dùng"
+        android:background="@drawable/charbackground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewUsers"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

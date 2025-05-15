@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AdminUserActivity::class.java)
             startActivity(intent)
         }
-
-
         binding.pendingOrderedTextView.setOnClickListener{
             val intent = Intent(this, PendingOrderActivity::class.java)
             startActivity(intent)
@@ -50,7 +48,23 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, OutForDeliveryActivity::class.java)
             startActivity(intent)
         }
+        binding.Signin.setOnClickListener{
+            val intent = Intent(this, SignActivity::class.java)
+            startActivity(intent)
+        }
+        binding.chat.setOnClickListener{
+            val intent = Intent(this, ReceivedActivity::class.java)
+            startActivity(intent)
+        }
+        binding.logout.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            sharedPreferences.edit().clear().apply()
 
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
 
     }
 }

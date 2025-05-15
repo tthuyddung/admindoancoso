@@ -10,10 +10,15 @@ import com.example.adminfoodapp.R
 import com.example.adminfoodapp.model.User
 
 class UserAdapter(
-    private val users: List<User>,
+    private var users: List<User>,
     private val onDelete: (User) -> Unit,
-    private val onEdit: (User) -> Unit // Chắc chắn hàm sửa sẽ được sử dụng
+    private val onEdit: (User) -> Unit
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+    fun setUsers(newUsers: List<User>) {
+        users = newUsers
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
@@ -29,7 +34,6 @@ class UserAdapter(
             onDelete(user)
         }
 
-        // Gán hành động sửa
         holder.editButton.setOnClickListener {
             onEdit(user)
         }

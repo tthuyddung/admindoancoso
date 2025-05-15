@@ -24,17 +24,14 @@ class EditUserActivity : AppCompatActivity() {
         binding = ActivityEditUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Gán dữ liệu
         userId = intent.getIntExtra("user_id", 0)
         binding.edtName.setText(intent.getStringExtra("user_name"))
         binding.edtEmail.setText(intent.getStringExtra("user_email"))
 
-        // Sự kiện nút lưu
         binding.btnSave.setOnClickListener {
             updateUser()
         }
 
-        // 👉 Sự kiện nút quay lại
         binding.backButton.setOnClickListener {
             finish()
         }
@@ -42,8 +39,8 @@ class EditUserActivity : AppCompatActivity() {
 
 
     private fun updateUser() {
-        val name = edtName.text.toString().trim()
-        val email = edtEmail.text.toString().trim()
+        val name = binding.edtName.text.toString().trim()
+        val email = binding.edtEmail.text.toString().trim()
 
         if (name.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "Tên và email không được để trống", Toast.LENGTH_SHORT).show()
@@ -52,7 +49,6 @@ class EditUserActivity : AppCompatActivity() {
 
         val url = "http://192.168.1.8/get_food/update_user.php"
         val requestQueue = Volley.newRequestQueue(this)
-
 
         val jsonObject = JSONObject()
         jsonObject.put("id", userId)

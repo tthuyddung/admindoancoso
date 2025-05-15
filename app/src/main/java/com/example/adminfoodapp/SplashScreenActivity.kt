@@ -8,7 +8,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreenActivity : AppCompatActivity() {
-    private var hasNavigated = false // để tránh chạy cả 2 lần (handler + nút)
+    private var hasNavigated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class SplashScreenActivity : AppCompatActivity() {
         nextButton.setOnClickListener {
             if (!hasNavigated) {
                 hasNavigated = true
-                val intent = Intent(this, SignActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }

@@ -11,13 +11,15 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="268dp"
+        android:layout_marginBottom="432dp"
         android:fontFamily="serif"
-        android:text="Food App"
+        android:text="Pho House"
+        android:textColor="@color/colorPrimary"
         android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -25,7 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:text="Admin Dashboard"
+        android:text="Chào mừng đến ẩm thực VietNam"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,20 +37,37 @@
         app:layout_constraintVertical_bias="0.062" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageView13"
+        android:layout_width="466dp"
+        android:layout_height="403dp"
         android:src="@drawable/logo__2_"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="-6dp"
+        tools:layout_editor_absoluteY="-6dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/charbackground"
+        android:text="Tiếp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Tiếp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Admin Dashboard"
+        android:textSize="23dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,7 @@ class AddUserActivity : AppCompatActivity() {
     }
 
     private fun addUser(name: String, email: String) {
-        val url = "http://192.168.1.8/get_food/add_user.php" // Thay đổi URL nếu cần
+        val url = "http://192.168.1.8/get_food/add_user.php"
         val requestQueue = Volley.newRequestQueue(this)
 
         val jsonObject = JSONObject()
@@ -51,10 +51,10 @@ class AddUserActivity : AppCompatActivity() {
                     Toast.makeText(this, "Thêm người dùng thành công", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent()
-                    intent.putExtra("user_name", name)  // Truyền tên người dùng mới
-                    intent.putExtra("user_email", email)  // Truyền email người dùng mới
-                    setResult(RESULT_OK, intent)  // Trả kết quả cho Activity trước đó
-                    finish() // Đóng AddUserActivity và quay lại AdminUserActivity
+                    intent.putExtra("user_name", name)
+                    intent.putExtra("user_email", email)
+                    setResult(RESULT_OK, intent)
+                    finish()
                 } else {
                     Toast.makeText(this, "Thêm người dùng thất bại", Toast.LENGTH_SHORT).show()
                 }
