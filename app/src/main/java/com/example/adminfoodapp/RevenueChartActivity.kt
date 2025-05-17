@@ -11,6 +11,8 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RevenueChartActivity : AppCompatActivity() {
 
@@ -24,6 +26,11 @@ class RevenueChartActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
+
+
+        val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        binding.tvCurrentTime.text = "Thời gian hiện tại: $currentTime"
+
 
         loadRevenueChart()
     }
@@ -41,8 +48,9 @@ class RevenueChartActivity : AppCompatActivity() {
 
                 for (i in 0 until dataArray.length()) {
                     val item = dataArray.getJSONObject(i)
-                    val name = item.getString("food_name")
-                    val total = item.getDouble("total").toFloat()
+                    val name = item.getString("date")
+                    val total = item.getDouble("revenue").toFloat()
+
 
                     entries.add(BarEntry(i.toFloat(), total))
                     labels.add(name)

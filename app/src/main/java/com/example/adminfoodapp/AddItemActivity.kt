@@ -114,13 +114,14 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         val client = OkHttpClient()
+        val fileName = "IMG_${System.currentTimeMillis()}.jpg"  // Tên file duy nhất theo thời gian
         val requestBodyBuilder = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("food_name", foodName)
             .addFormDataPart("price", price)
             .addFormDataPart("description", description)
             .addFormDataPart("ingredients", ingredients)
-            .addFormDataPart("image", "image.jpg", RequestBody.create("image/*".toMediaTypeOrNull(), tempFile))
+            .addFormDataPart("image", fileName, RequestBody.create("image/*".toMediaTypeOrNull(), tempFile))
 
         if (mode == "edit" && !itemId.isNullOrEmpty()) {
             requestBodyBuilder.addFormDataPart("id", itemId!!)

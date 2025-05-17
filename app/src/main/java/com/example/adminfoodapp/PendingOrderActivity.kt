@@ -44,11 +44,14 @@ class PendingOrderActivity : AppCompatActivity() {
                     val obj = response.getJSONObject(i)
                     val order = Order(
                         id = obj.getInt("id"),
-                        foodName = obj.getString("food_name"),
+                        user = obj.getString("user"),
+                        food_name = obj.getString("food_name"),
                         count = obj.getString("count"),
-                        imageUrl = "${Constants.BASE_URL}${obj.getString("image_path")}",
-                        state = obj.getString("state")
+                        total_price = obj.getDouble("total_price"),
+                        state = obj.getString("state"),
+                        imageUrl = Constants.BASE_URL + obj.optString("image_path", "uploads/default.jpg")
                     )
+
 
                     orderList.add(order)
                 }

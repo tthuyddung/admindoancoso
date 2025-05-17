@@ -61,12 +61,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Số lượng"
+                android:text="Tổng tiền:"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView9" />
 
             <TextView
-                android:id="@+id/pendingOrderQuantity"
+                android:id="@+id/pendingOrderPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

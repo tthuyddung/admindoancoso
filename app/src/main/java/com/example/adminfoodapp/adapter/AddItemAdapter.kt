@@ -1,6 +1,7 @@
 package com.example.adminfoodapp.adapter
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -47,12 +48,15 @@ class AddItemAdapter(
 
             binding.apply {
                 foodNameTextView.text = item.food_name
-                priceTextView.text = item.price
+                priceTextView.text = item.price.toString()
                 quantityTextView.text = quantity.toString()
 
+                Log.d("GLIDE_URL", "Loading image from URL: ${item.image_url}")
                 Glide.with(root.context)
                     .load(item.image_url)
                     .into(foodImageView)
+
+
 
                 minusButton.setOnClickListener { decreaseQuantity(position) }
                 plusTextView.setOnClickListener { increaseQuantity(position) }

@@ -81,7 +81,7 @@ class AdminUserActivity : AppCompatActivity() {
     }
 
     private fun onDeleteUser(user: User) {
-        val url = "http://192.168.1.18/get_food/delete_user.php"
+        val url = "${Constants.BASE_URL}delete_user.php"
         val requestQueue = Volley.newRequestQueue(this)
 
         val jsonObject = JSONObject()
@@ -137,7 +137,7 @@ class AdminUserActivity : AppCompatActivity() {
             }
         }
 
-        // 👇 Xử lý cập nhật người dùng
+        // Xử lý cập nhật người dùng
         if (requestCode == EDIT_USER_REQUEST_CODE && resultCode == RESULT_OK) {
             getUsers() // gọi lại API để reload danh sách mới
         }

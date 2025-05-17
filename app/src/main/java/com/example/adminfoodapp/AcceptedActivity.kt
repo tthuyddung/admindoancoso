@@ -45,11 +45,14 @@ class AcceptedActivity : AppCompatActivity() {
                         val obj = response.getJSONObject(i)
                         val order = Order(
                             id = obj.getInt("id"),
-                            foodName = obj.getString("food_name"),
-                            imageUrl = Constants.BASE_URL + obj.getString("image_path"),
-                                    count = obj.getString("count"),
-                            state = obj.getString("state")
+                            user = obj.getString("user"),
+                            food_name = obj.getString("food_name"),
+                            count = obj.getString("count"),
+                            total_price = obj.getDouble("total_price"),
+                            state = obj.getString("state"),
+                            imageUrl = Constants.BASE_URL + obj.optString("image_path", "uploads/default.jpg")
                         )
+
                         acceptedOrders.add(order)
                     }
                     adapter.notifyDataSetChanged()

@@ -67,7 +67,7 @@ class AllItemActivity : AppCompatActivity() {
 
                         val id = if (obj.has("id")) obj.getInt("id") else -1
                         val name = obj.getString("food_name")
-                        val price = obj.getString("price")
+                        val price = obj.getDouble("price")
                         val description = obj.optString("description", "")
                         val ingredients = obj.optString("ingredients", "")
                         val imageUrl = obj.getString("image_url").let {

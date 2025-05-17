@@ -18,7 +18,6 @@ class EditProfileActivity : AppCompatActivity() {
     private val getUrl = "${Constants.BASE_URL}get_profile.php"
     private val updateUrl = "${Constants.BASE_URL}update_profile.php"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
@@ -38,7 +37,8 @@ class EditProfileActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             updateUserProfile()
         }
-        binding.backButton.setOnClickListener{
+
+        binding.backButton.setOnClickListener {
             finish()
         }
     }
@@ -46,19 +46,32 @@ class EditProfileActivity : AppCompatActivity() {
     private fun getUserProfile() {
         val request = object : StringRequest(Method.POST, getUrl,
             { response ->
-                val json = JSONObject(response)
-                if (json.getString("status") == "success") {
-                    val user = json.getJSONObject("data")
-                    binding.etLocation.setText(user.getString("location"))
-                    binding.etOwner.setText(user.getString("owner_name"))
-                    binding.etRestaurant.setText(user.getString("restaurant_name"))
-                    binding.etEmail.setText(user.getString("email_or_phone"))
-                    binding.etPassword.setText(user.getString("password"))
+                if (!response.trim().startsWith("{")) {
+                    Toast.makeText(this, "Phản hồi không hợp lệ từ máy chủ", Toast.LENGTH_SHORT).show()
+                    Log.e("getUserProfile", "Phản hồi sai định dạng: $response")
+                } else {
+                    try {
+                        val json = JSONObject(response)
+                        if (json.getString("status") == "success") {
+                            val user = json.getJSONObject("data")
+                            binding.etLocation.setText(user.getString("location"))
+                            binding.etOwner.setText(user.getString("owner_name"))
+                            binding.etRestaurant.setText(user.getString("restaurant_name"))
+                            binding.etEmail.setText(user.getString("email_or_phone"))
+                            binding.etPassword.setText(user.getString("password"))
+                        } else {
+                            Toast.makeText(this, "Không tìm thấy thông tin", Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception) {
+                        Log.e("getUserProfile", "Lỗi phân tích JSON: ${e.message}")
+                        Toast.makeText(this, "Lỗi xử lý dữ liệu từ máy chủ", Toast.LENGTH_SHORT).show()
+                    }
                 }
             },
             { error ->
-                Toast.makeText(this, "Lỗi: ${error.message}", Toast.LENGTH_SHORT).show()
-            }) {
+                Toast.makeText(this, "Lỗi mạng: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        ) {
             override fun getParams(): MutableMap<String, String> {
                 return hashMapOf("id" to id!!)
             }
@@ -76,17 +89,23 @@ class EditProfileActivity : AppCompatActivity() {
 
         val request = object : StringRequest(Method.POST, updateUrl,
             { response ->
-                val json = JSONObject(response)
-                if (json.getString("status") == "success") {
-                    Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
-                    finish()
-                } else {
-                    Toast.makeText(this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show()
+                try {
+                    val json = JSONObject(response)
+                    if (json.getString("status") == "success") {
+                        Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Log.e("updateUserProfile", "Lỗi parse JSON: ${e.message}")
+                    Toast.makeText(this, "Lỗi phản hồi từ máy chủ", Toast.LENGTH_SHORT).show()
                 }
             },
             { error ->
-                Toast.makeText(this, "Lỗi: ${error.message}", Toast.LENGTH_SHORT).show()
-            }) {
+                Toast.makeText(this, "Lỗi mạng: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        ) {
             override fun getParams(): MutableMap<String, String> {
                 return hashMapOf(
                     "id" to id!!,

@@ -35,21 +35,28 @@ class OutForDeliveryActivity : AppCompatActivity() {
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response: JSONArray ->
-                val customerNames = ArrayList<String>()
-                val statuses = ArrayList<String>()
+                val deliveredOrders = ArrayList<Order>()
 
                 for (i in 0 until response.length()) {
                     val obj = response.getJSONObject(i)
                     val state = obj.getString("state")
                     if (state == "delivered") {
-                        customerNames.add(obj.getString("food_name"))
-                        statuses.add(state)
-                    }
-                }
 
-                val deliveredOrders = ArrayList<Pair<String, String>>()
-                for (i in customerNames.indices) {
-                    deliveredOrders.add(Pair(customerNames[i], statuses[i]))
+                        val obj = response.getJSONObject(i)
+
+                        val id = obj.getInt("id")
+                        val user = obj.getString("user")
+                        val foodName = obj.getString("food_name")
+                        val count = obj.getString("count")
+                        val price = obj.getDouble("total_price")
+                        val state = obj.getString("state")
+                        val imageUrl = obj.optString("image_url", null) // dùng optString để tránh lỗi nếu thiếu
+
+                        val order = Order(id, user, foodName, count, price, state, imageUrl)
+                        deliveredOrders.add(order)
+
+
+                    }
                 }
 
                 val adapter = DeliveryAdapter(deliveredOrders)
@@ -63,4 +70,5 @@ class OutForDeliveryActivity : AppCompatActivity() {
 
         requestQueue.add(request)
     }
+
 }

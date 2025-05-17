@@ -34,7 +34,7 @@ class AcceptedOrderAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(order: Order) {
-            binding.customerName.text = order.foodName
+            binding.customerName.text = order.food_name
             binding.pendingOrderQuantity.text = order.count
             Glide.with(context).load(order.imageUrl).into(binding.orderFoodImage)
 
